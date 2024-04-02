@@ -1,0 +1,65 @@
+//https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/39760380#overview
+
+import React, {useState} from 'react'
+
+function UserInput() {
+const [UserInput, setUserInput] = useState({
+    initialInvestment: 1000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10,
+});
+
+function handleChange(inputIdentifier, newvalue) {
+    setUserInput((prevUserInput) =>{
+        return {
+            ...prevUserInput,
+            [inputIdentifier]: newvalue,
+        };
+    });
+}
+  return (
+    <section id="user-input">
+        <div className="user-group">
+            <p>
+                <label htmlFor="">Initial Investment</label>
+                <input type="number" required
+                value={UserInput.initialInvestment}
+                onChange={(e) => {
+                    handleChange('initialInvestment', e.target.value )
+                }}/>
+            </p>
+            <p>
+                <label htmlFor="">Annual Investment</label>
+                <input type="number" required
+                value={UserInput.annualInvestment}
+                onChange={(e) => {
+    handleChange('annualInvestment', e.target.value)
+                }}
+                />
+            </p>
+         
+        </div>
+        <div className="input-group">
+            <p>
+                <label htmlFor="">Expected Return</label>
+                <input type="number"required 
+                value={UserInput.expectedReturn}
+                onChange={(e)=> {
+                    handleChange('expectedReturn', e.target.value)
+                }} />
+            </p>
+            <p>
+                <label htmlFor="">Duration</label>
+                <input type="number" required
+                value={UserInput.duration}
+                onChange={(e)=> handleChange('duration', e.target.value)}
+                />
+            </p>
+         
+        </div>
+    </section>
+  )
+}
+
+export default UserInput
