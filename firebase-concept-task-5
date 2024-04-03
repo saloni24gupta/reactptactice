@@ -1,1 +1,99 @@
 
+// import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth"
+// import { getFirestore } from "firebase/firestore";
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD6FF-MuUqEi-5QuI7pvig-mRT71K-56MU",
+//   authDomain: "netflex-clone-25f1f.firebaseapp.com",
+//   projectId: "netflex-clone-25f1f",
+//   storageBucket: "netflex-clone-25f1f.appspot.com",
+//   messagingSenderId: "813413117409",
+//   appId: "1:813413117409:web:d76e5f7172eb6637d2f6a0",
+//   measurementId: "G-X1V8PVD2HF"
+// };
+
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// export const auth = getAuth(app)
+
+// export default auth;
+
+
+//v9 import firebase from 'firebase/app' 
+import { initializeApp } from 'firebase/app'
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
+const firebaseConfig = {
+    apiKey: "AIzaSyD6FF-MuUqEi-5QuI7pvig-mRT71K-56MU",
+    authDomain: "netflex-clone-25f1f.firebaseapp.com",
+    projectId: "netflex-clone-25f1f",
+    storageBucket: "netflex-clone-25f1f.appspot.com",
+    messagingSenderId: "813413117409",
+    appId: "1:813413117409:web:d76e5f7172eb6637d2f6a0",
+    measurementId: "G-X1V8PVD2HF"
+  };
+//init firebase app
+// firebase.initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
+// this connect to firebase backened
+
+// Now setup database
+//inititalize firebase servies
+const db = getFirestore() //this db is for database which repesent database connection
+
+// get a reefrence to specific database collection
+// collection reference = colRef
+// we need to import a function in order to get referencebto specific colllection 
+// that function is collection which comes from firestore library
+// now we invoke collection() in this we need to pass to argument first is db so we know what database to look in for the collection the seccond argument is 'books'collection
+// older version of firestore
+
+// const db = firebase.getFirestore()
+// db.collection('books')
+// now we are using the function not on the db object but we are importing that function from the firestre librery (collection()) then we pass the database object in as an argument and also a colection we want refrence to now this reference is now being stored inside this constant  collection ref (colref)
+
+
+const colRef = collection(db, 'books')
+//strp3 get the collection data
+// for that we need to import function to do that getDocs
+
+// getDocs(colRef)
+// .then((snapshot) => {
+//     console.log(snapshot.docs)
+// })
+
+
+//we are passing colRef as an argument
+// what it does is : it go out look it collection(db, 'books') and try to retrieve all the documents inside that collection now 
+// this returns a promise so we can take on a then method which finds a function when this task is complete this function is going to contain a snapshot of that collection at that moment in time when we reach out to get it on that snapshot object we have access to all of the documents so we will not do clg(snapshot) then use property docs
+
+// console.log(snapshot.docs) which represents all of the documents now we can see array of 3 different things each of these object represents a document inside that firestore collection as i created 3 document and we grabbed 3 different documents as we open any of them there are lots of properies and menthod on this object . 
+// we want data and maybe the id of the document as well the data is grabbed by using a data function so we need to call the data function on each of our documents to get data object that contain title and author of each document 
+// and we also grabbed id pproperty of each document
+// using for eash loop and just grab dat data from each of those dcument so that we can output it in a more elegent way i am going to cycle through through docs
+getDocs(colRef)
+.then((snapshot) => {
+    // console.log(snapshot.docs)
+    let books = []
+    snapshot.docs.forEach((doc) => {
+books.push({...doc.data(), id: doc.id
+})
+console.log(books)
+    })
+    .catch((err) => {
+    console.log(err.message)
+})
+
+})
+
+//  i am going to cycle through through docs the snapshot here i can add my own custom object ehich represents each document or each books insode this aaray
+//     snapshot.docs.forEach() to cycle throgh those and each time around we fire a function for each item now we take in that document i will call doc and then we can do something with that doc each time around all i want to do is get some data from it and then push that to the array((doc) => {
+  // books.push
+// }) //we are going to push an object tothe array each time so each book is represented by an object nw i want to get data from the document and remember the data is the title and the properties we get data by using data method on the doc object herre i can  say doc.data to get that and thet returns an object with the different data propertes the title and author so what we need to do is spread that into our new object so using ... so it takes these two properties it just output into our new object
+// also i want id and that is going to be a property on my object as well so we can get theat by saying doc.id : now we will we doing for each of the documents on that snapshot we are adding a new object to the box array and for each object we get the data also the id of that document
+export const auth = getAuth(app)
+
+
+
+export default auth;
