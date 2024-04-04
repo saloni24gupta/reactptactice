@@ -97,3 +97,39 @@ export const auth = getAuth(app)
 
 
 export default auth;
+
+
+
+//Working code 
+/*import { initializeApp } from "firebase/app";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+const firebaseConfig = {
+  apiKey: "AIzaSyD6FF-MuUqEi-5QuI7pvig-mRT71K-56MU",
+  authDomain: "netflex-clone-25f1f.firebaseapp.com",
+  projectId: "netflex-clone-25f1f",
+  storageBucket: "netflex-clone-25f1f.appspot.com",
+  messagingSenderId: "813413117409",
+  appId: "1:813413117409:web:d76e5f7172eb6637d2f6a0",
+  measurementId: "G-X1V8PVD2HF"
+};
+
+initializeApp(firebaseConfig);
+export const auth = getAuth()
+
+const db = getFirestore();
+
+const collectionReference = collection(db, 'books')
+getDocs(collectionReference)
+.then((snapshot) =>{
+  let books = []
+  snapshot.docs.forEach((doc) => {
+    books.push({...doc.data(), id: doc.id})
+console.log(books)
+  }).catch((err) => {
+    console.log(err.message)
+  })
+
+})
+
+export default auth;*/
