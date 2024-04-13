@@ -1,0 +1,59 @@
+
+import CoreConcept from "./components/CoreConcept";
+import Header from "./components/Header";
+import TabButton from "./components/TabButton";
+import { CORE_CONCEPTS } from "./components/data";
+function App() {
+  function handleClick(selectedButton) {
+    console.log(selectedButton)
+}
+  return (
+    <div>
+      <Header />
+      <main>
+        <section id="core-concepts">
+        <h2>Time to get started!</h2>
+        {/* <CoreConcept image={CORE_CONCEPTS[0].image} title={CORE_CONCEPTS[0].title} description={CORE_CONCEPTS[0].description}/>
+        <CoreConcept image={CORE_CONCEPTS[1].image} title={CORE_CONCEPTS[1].title} description={CORE_CONCEPTS[1].description}/>
+        <CoreConcept image={CORE_CONCEPTS[2].image} title={CORE_CONCEPTS[2].title} description={CORE_CONCEPTS[2].description}/>
+        <CoreConcept image={CORE_CONCEPTS[3].image} title={CORE_CONCEPTS[3].title} description={CORE_CONCEPTS[3].description}/>*/}
+      
+      <CoreConcept {...CORE_CONCEPTS[0]}/>
+      <CoreConcept {...CORE_CONCEPTS[1]}/>
+     <CoreConcept {...CORE_CONCEPTS[2]}/>
+      <CoreConcept {...CORE_CONCEPTS[3]}/>
+        </section> 
+
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+          {/* <TabButton onSelect={function() { handleClick('Components')}}>components</TabButton>  using function*/}
+            <TabButton onSelect={() => handleClick('Components')}>components</TabButton>
+            <TabButton onSelect={() => handleClick('Props')}>props</TabButton>
+            <TabButton onSelect={() => handleClick('JSX')}>JSX</TabButton>
+            <TabButton onSelect={ () => handleClick('STATE')}>state</TabButton>
+          </menu>
+          Dynamic  Context
+        </section>
+  </main>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+import React from 'react'
+
+function TabButton({children, onSelect}) {
+    function handleClick() {
+        console.log('i m click')
+    }
+  return (
+ <li><button onClick={onSelect}>{children}</button></li>
+  )
+}
+
+export default TabButton
