@@ -1,0 +1,32 @@
+window.addEventListener('keydown', (e) => {
+    console.log(e)
+    console.log(e.key)
+    console.log(e.code)
+    console.log(e.keyCode)
+    // setInterval(() => {
+    //   console.log('hello word from' + " " + e.code)
+    // }, 1000)
+})
+
+const element = document.getElementById("demo")
+// setInterval(function () {
+//     element.innerHTML += "Hello"
+// }, 1000)
+
+
+
+const myInterval = setInterval(myTimer, 1000)
+// function displayInterval() {
+//     element.innerHTML += "hello from function"
+// }
+
+// clearInterval(myInterval)
+
+function myTimer() {
+    const date = new Date();
+    element.innerHTML = date.toLocaleTimeString()
+}
+
+function mystopfunction() {
+    clearInterval(myInterval)
+}
